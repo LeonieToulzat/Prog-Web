@@ -1,4 +1,5 @@
 
+
     body {
         font-family: Arial, sans-serif;
         text-align: center;
@@ -13,7 +14,7 @@
     }
     
     h1 {
-        color: #333;
+        color: #87cefa 	 ;
     }
     
     .game-board {
@@ -50,7 +51,7 @@
     button {
         padding: 10px 20px;
         margin-top: 20px;
-        background-color: #333;
+        background-color: #87cefa;
         color: white;
         border: none;
         cursor: pointer;
@@ -79,4 +80,3 @@
     .miss {
         background-color: lightgray; /* Gris clair pour les coups manqués */
     }
-
