@@ -11,6 +11,7 @@ let playerShips = [];
 let computerShips = [];
 let playerMoves = new Set();
 let isPlacingShips = true;
+let shipLength = 0; //Longueur du bateau
 
 // Création d'une grille
 function createGrid(board, isPlayerBoard) {
@@ -43,31 +44,50 @@ function placeRandomShips() {
 }
 
 // Placer un navire pour le joueur
-function placePlayerShip(cell, index) {
+/*function placePlayerShip(cell, index) {
     if (playerShips.length >= shipCount) {
-        message.textContent = "Tous vos navires sont placés !";
+        message.textContent = "Tous vos navires sont placés !";
         return;
     }
 
     if (!playerShips.includes(index)) {
         playerShips.push(index);
         cell.classList.add('player-ship');
-        message.textContent = `Navire placé ! (${playerShips.length}/${shipCount})`;
+        message.textContent = `Navire placé ! (${playerShips.length}/${shipCount})`;
 
         if (playerShips.length === shipCount) {
-            message.textContent = "Tous vos navires sont placés ! À vous de jouer !";
+            message.textContent = "Tous vos navires sont placés ! À vous de jouer !";
             isPlacingShips = false;
             createGrid(computerBoard, false); // Permet les attaques sur la grille de l'ordinateur
         }
     } else {
-        message.textContent = "Un navire est déjà placé ici !";
+        message.textContent = "Un navire est déjà placé ici !";
+    }
+}*/
+
+
+function placePlayerShip(cell,index) {
+    if (playerShips.length >= shipCount) {
+        message.textContent = "Tous vos navires sont placés !";
+        return;
+    }
+    if (!playerShips.push(index)) {
+        message.textContent = 'Placez un navire long de 5 cases.';
+        while (shiplength<5) {
+            //playerShips.push(index) ;
+            shipLength=shipLength+1;
+            cell.classList.add('player-ship');
+        } 
+        playerShips.push(index) ;
+        message.textContent = 'Navire placé ! (${playerShips.length}/${shipCount})';
+
     }
 }
 
 // Gérer une attaque du joueur sur l'ordinateur
 function handlePlayerAttack(cell, index) {
     if (playerMoves.has(index)) {
-        message.textContent = "Vous avez déjà attaqué ici !";
+        message.textContent = "Vous avez déjà attaqué ici !";
         return;
     }
 
@@ -75,10 +95,10 @@ function handlePlayerAttack(cell, index) {
 
     if (computerShips.includes(index)) {
         cell.classList.add('hit');
-        message.textContent = "Touché !";
+        message.textContent = "Touché !";
         computerShips = computerShips.filter(ship => ship !== index); // Retire le navire touché
         if (computerShips.length === 0) {
-            message.textContent = "Vous avez gagné !";
+            message.textContent = "Vous avez gagné !";
         }
     } else {
         cell.classList.add('miss');
@@ -97,7 +117,7 @@ function resetGame() {
     createGrid(computerBoard, false); // Plateau de l'ordinateur
     placeRandomShips();
 
-    message.textContent = "Placez vos navires sur le plateau !";
+    message.textContent = "Placez vos navires sur le plateau de gauche !";
 }
 
 // Initialiser le jeu au démarrage

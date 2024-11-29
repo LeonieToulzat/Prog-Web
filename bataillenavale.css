@@ -69,6 +69,11 @@
     .player-ship {
         background-color: #2ecc71; /* Vert pour les navires placés */
     }
+    
+
+    .grid div.player-ship {
+        background-color: green;
+    }
 
     /* Coup touché */
     .hit {
