@@ -1,4 +1,4 @@
-
+/*
 
     body {
         font-family: Arial, sans-serif;
@@ -66,22 +66,132 @@
         font-weight: bold;
     }
 
-        /* Navires du joueur */
-    .player-ship {
-        background-color: #2ecc71; /* Vert pour les navires placés */
-    }
-    
-
     .grid div.player-ship {
         background-color: green;
     }
+*/
 
-    /* Coup touché */
-    .hit {
-        background-color: red; /* Rouge pour les coups réussis */
-    }
 
-    /* Coup manqué */
-    .miss {
-        background-color: lightgray; /* Gris clair pour les coups manqués */
-    }
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #87cefa 	 ;
+}
+
+.game-board {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+    margin: 0 20px;
+    border: 2px solid #333;
+}
+
+.grid div {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.grid div.hit {
+    background-color: red;
+}
+
+.grid div.miss {
+    background-color: blue;
+}
+
+button {
+    padding: 20px 50px;
+    margin-top: 20px;
+    background-color: #87cefa;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+    /* Navires du joueur */
+.player-ship {
+    background-color: #2ecc71; /* Vert pour les navires placés */
+}
+
+
+.grid div.player-ship {
+    background-color: green;
+}
+
+/* Coup touché */
+.hit {
+    background-color: red; /* Rouge pour les coups réussis */
+}
+
+/* Coup manqué */
+.miss {
+    background-color: lightgray; /* Gris clair pour les coups manqués */
+}
+.grid div.hit {
+    background-color: red;
+    animation: hitAnimation 0.5s ease;
+}
+
+@keyframes hitAnimation {
+    from { transform: scale(1.2); }
+    to { transform: scale(1); }
+}
+.controls {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.controls label {
+    font-weight: bold;
+}
+
+.controls select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.grid div.player-ship {
+    background-color: #2ecc71; /* Vert pour les navires */
+}
+.grid div.selected {
+    background-color: #87cefa; /* Bleu pour les sélections temporaires */
+}
+
+.grid div.player-ship {
+    background-color: #2ecc71; /* Vert pour les bateaux confirmés */
+}
+
+
