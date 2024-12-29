@@ -7,6 +7,7 @@ const message = document.getElementById('message');
 const gridSize = 10; // Taille de la grille
 const maxShips = 5; // Nombre total de bateaux
 const shipLengths = [5, 4, 3, 3, 2]; // Longueurs des bateaux
+let end = false; // Fin de la partie
 
 let playerShips = []; // Positions des bateaux du joueur
 let computerShips = []; // Positions des bateaux de l'adversaire
@@ -103,13 +104,16 @@ function placeComputerShips() {
         while (!validPlacement) {
             const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
             const startIndex = Math.floor(Math.random() * gridSize * gridSize);
+            //const length = Math.floor(Math.random() * 4) + 2; // Length between 2 and 5
+            length = length > 5 ? 5 : length;   // Pour éviter les bateaux trop longs
+            length = length < 2 ? 2 : length;   // Pour éviter les bateaux trop courts
             const positions = calculateShipPositions(startIndex, length, direction);
 
             if (isValidPlacement(positions, computerShips)) {
                 computerShips.push(...positions);
                 validPlacement = true;
 
-                // Pour TEST : Rendre visibles les bateaux de l'adversaire (supprime en production)
+            // Pour TEST : Rendre visibles les bateaux de l'adversaire (supprime en production)
                 positions.forEach(pos => {
                     const cell = document.querySelector(`#computer-board div[data-index="${pos}"]`);
                     cell.classList.add('computer-ship');
@@ -147,14 +151,20 @@ function isValidPlacement(positions, allShips) {
 
 // === Attaque du joueur ===
 function handlePlayerAttack(cell, index) {
-    if (cell.classList.contains('hit') || cell.classList.contains('miss')) return;
+    while (end===false) {
 
-    if (computerShips.includes(index)) {
-        cell.classList.add('hit');
-        message.textContent = "Touché !";
-    } else {
-        cell.classList.add('miss');
-        message.textContent = "Manqué !";
+        if (cell.classList.contains('hit') || cell.classList.contains('miss')) return;
+
+        if (computerShips.includes(index)) {
+            cell.classList.add('hit');
+            message.textContent = "Touché !";
+            if (computerShips.every(pos => cell.parentElement.children[pos].classList.contains('hit'))) {
+                finishGame();
+            }
+        } else {
+            cell.classList.add('miss');
+            message.textContent = "Manqué !";
+        }
     }
 }
 
@@ -173,7 +183,9 @@ function resetGame() {
 
 function finishGame() {
     message.textContent = "Vous avez gagné !";
+    end = true;
 }
+
 
 // === Initialisation du jeu ===
 resetButton.addEventListener('click', resetGame);
