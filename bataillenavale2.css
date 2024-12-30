@@ -1,0 +1,189 @@
+
+/* Style pour l'interface */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('world_of_warships_cover-750x500.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* Titre principal */
+header h1 {
+    margin: 0;
+    font-size: 4rem; /* Agrandit le titre */
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    padding: 40px 0;
+}
+
+/* Sous-titre */
+h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Conteneur de la grille */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Grid items */
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Bouton */
+.button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+/* Animation au survol */
+.button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.button:active {
+    background-color: #1c5986;
+    transform: scale(0.9);
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #87cefa 	 ;
+}
+
+/* Organisation des grilles */
+
+.game-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Espacement entre les grilles */
+    width: 100%;
+    max-width: 1200px;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacement entre le titre et la grille */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    grid-template-rows: repeat(10, 30px);
+    gap: 2px;
+    margin: 0 20px;
+    border: 2px solid #333;
+}
+
+.grid div {
+    width: 30px;
+    height: 30px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.grid div.hit {
+    background-color: red;
+}
+
+.grid div.miss {
+    background-color: blue;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+
+/* Navires du joueur */
+.player-ship {
+background-color: #2ecc71; /* Vert pour les navires placés */
+}
+
+
+.grid div.player-ship {
+background-color: green;
+}
+
+/* Coup touché */
+.hit {
+background-color: red; /* Rouge pour les coups réussis */
+}
+
+/* Coup manqué */
+.miss {
+background-color: lightgray; /* Gris clair pour les coups manqués */
+}
+.grid div.hit {
+background-color: red;
+animation: hitAnimation 0.5s ease;
+}
+
+@keyframes hitAnimation {
+from { transform: scale(1.2); }
+to { transform: scale(1); }
+}
+.controls {
+margin: 10px 0;
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+
+.controls label {
+font-weight: bold;
+}
+
+.controls select {
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.grid div.player-ship {
+background-color: #2ecc71; /* Vert pour les navires */
+}
+.grid div.selected {
+background-color: #87cefa; /* Bleu pour les sélections temporaires */
+}
+
+.grid div.player-ship {
+background-color: #2ecc71; /* Vert pour les bateaux confirmés */
+}
+
+.selected-attack {
+background-color: rgba(255,0,0,0.5);
+cursor:pointer;
+}
