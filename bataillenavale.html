@@ -1,31 +1,30 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="bataillenavale.css">
+    <title>Bataille Navale</title>
 </head>
 <body>
     <div class="container">
         <h1>Bataille Navale</h1>
         <div class="game-board">
-           <!-- Grille de jeu -->
-            <div class="grid" id="player-board">
-            </div>
-            <div class="grid" id="computer-board"></div>      
+            <!-- Grille de jeu -->
+            <div class="grid" id="player-board"></div>
+            <div class="grid" id="computer-board"></div>
         </div>
-        <button id="reset-button">Réinitialiser</button>
+        <div class="controls">
+            <button id="reset-button">Réinitialiser</button>
+            <button id="confirm-button">Valider les attaques</button>
+            <button id="confirm-placement">Valider le placement</button>
+        </div>
+        <div id="score">
+            <p id="player-score">Vos bateaux restants : 5</p>
+            <p id="computer-score">Bateaux adversaires restants : 5</p>
+        </div>
         <div id="message"></div>
     </div>
-    <div class="controls">
-        <button id="confirm-button">OK</button>
-    </div>
-    <div id="message"></div>
-    
-    
-    
     <script src="nvbataillenavale.js"></script>
 </body>
 </html>
