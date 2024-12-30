@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bataillenavale.css">
+    <title>Bataille Navale</title>
+</head>
+<body>
+    <div class="container">
+        
+        <h2>Bataille Navale</h2>
+   
+        
+        <main>
+            <!-- Section des grilles de jeu -->
+            <section class="game-section">
+                <!-- Grille du joueur -->
+                <div class="grid-container">
+                    <h2>Grille du joueur</h2>
+                    <div class="grid" id="player-board"></div>
+                </div>
+                
+                <!-- Grille de l'ordinateur -->
+                <div class="grid-container">
+                    <h2>Grille de l'ordinateur</h2>
+                    <div class="grid" id="computer-board"></div>
+                </div>
+            </section>
+
+            <!-- Contrôles -->
+            <section class="controls">
+                <button id="reset-button">Réinitialiser</button>
+                <button id="confirm-button">Valider les attaques</button>
+                <button id="confirm-placement">Valider le placement</button>
+            </section>
+
+            <!-- Scores -->
+            <section id="score">
+                <p id="player-score">Vos bateaux restants : 5</p>
+                <p id="computer-score">Bateaux adversaires restants : 5</p>
+            </section>
+
+            <!-- Messages -->
+            <section id="game-message">
+                <div id="message"></div>
+            </section>
+        </main>
+    </div>
+    <script src="bataillenavale.js"></script>
+</body>
+</html>
