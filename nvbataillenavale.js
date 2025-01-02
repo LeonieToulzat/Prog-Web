@@ -214,6 +214,7 @@ let selectedAttacks = [];
 let placedShipsCount = 0;
 let currentTurn = "player";
 let end = false;
+let endgame = false;
 
 // === Création des grilles ===
 function createGrid(board, isPlayerBoard) {
@@ -251,6 +252,10 @@ function confirmPlacement() {
         message.textContent = "Veuillez sélectionner au moins 2 cases adjacentes.";
         return;
     }
+    if (currentSelections.length > 5) {
+        message.textContent = "Bateau trop long !";
+        return;
+    }   
 
     if (isValidSelection(currentSelections)) {
         currentSelections.forEach(pos => {
@@ -290,7 +295,7 @@ function placeComputerShips() {
             const startIndex = Math.floor(Math.random() * gridSize * gridSize);
             const positions = calculateShipPositions(startIndex, length, direction);
 
-            if (isValidPlacement(positions, computerShips)) {
+            if (isValidPlacement(positions, length, computerShips)) {
                 computerShips.push(...positions);
                 validPlacement = true;
             }
@@ -304,11 +309,11 @@ function calculateShipPositions(startIndex, length, direction) {
     for (let i = 0; i < length; i++) {
         if (direction === 'horizontal') {
             const pos = startIndex + i;
-            if (Math.floor(pos / gridSize) !== Math.floor(startIndex / gridSize)) break; // Dépassement horizontal
+            if (Math.floor(pos / gridSize) !== Math.floor(startIndex / gridSize)) {break;} // Dépassement horizontal
             positions.push(pos);
         } else {
             const pos = startIndex + i * gridSize;
-            if (pos >= gridSize * gridSize) break; // Dépassement vertical
+            if (pos >= gridSize * gridSize) {break;} // Dépassement vertical
             positions.push(pos);
         }
     }
@@ -323,8 +328,8 @@ function isValidSelection(positions) {
     return isHorizontal || isVertical;
 }
 
-function isValidPlacement(positions, allShips) {
-    return positions.length > 0 && positions.every(pos =>
+function isValidPlacement(positions, length, allShips) {
+    return positions.length===length && positions.every(pos =>
         pos >= 0 &&
         pos < gridSize * gridSize &&
         !allShips.includes(pos)
@@ -333,6 +338,7 @@ function isValidPlacement(positions, allShips) {
 
 // === Gestion des attaques ===
 function handlePlayerAttack(cell, index) {
+    if (endgame===true) return;
     if (end || currentTurn !== "player") return;
 
     if (!cell.classList.contains('hit') && !cell.classList.contains('miss')) {
@@ -346,6 +352,7 @@ function handlePlayerAttack(cell, index) {
 
 // === Valider les attaques ===
 function confirmAttacks() {
+    if (endgame===true) return;
     if (end || currentTurn !== "player") return;
 
     selectedAttacks.forEach(index => {
@@ -371,6 +378,7 @@ function confirmAttacks() {
 
 // === Attaque de l'ordinateur ===
 function computerAttack() {
+    if (endgame===true) return;
     if (end || currentTurn !== "computer") return;
 
     let index;
@@ -427,6 +435,11 @@ function resetGame() {
     playerScore.textContent = "Vos bateaux restants : 5";
     computerScore.textContent = "Bateaux adversaires restants : 5";
     message.textContent = "Placez vos bateaux en sélectionnant les cases et en validant.";
+}
+
+function finishGame(msg) {
+    message.textContent = msg;
+    endgame = true;
 }
 
 resetButton.addEventListener('click', resetGame);
