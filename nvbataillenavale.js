@@ -340,11 +340,14 @@ function isValidPlacement(positions, length, allShips) {
 function handlePlayerAttack(cell, index) {
     if (endgame===true) return;
     if (end || currentTurn !== "player") return;
+    //let number = 0;
 
     if (!cell.classList.contains('hit') && !cell.classList.contains('miss')) {
         selectedAttacks.push(index);
         cell.classList.add('selected-attack'); // Colorer immédiatement
+        //number = 1;
     } else {
+        number = 0;
         selectedAttacks = selectedAttacks.filter(pos => pos !== index);
         cell.classList.remove('selected-attack');
     }
@@ -354,9 +357,15 @@ function handlePlayerAttack(cell, index) {
 function confirmAttacks() {
     if (endgame===true) return;
     if (end || currentTurn !== "player") return;
+    /*
+    if (number === 1) {
+        message.textContent = "Attaquez une seule case à la fois.";
+        return;
+    }*/
 
     selectedAttacks.forEach(index => {
         const cell = document.querySelector(`#computer-board div[data-index="${index}"]`);
+        cell.classList.add('selected-attack'); // Colorer les cases sélectionnées
         if (computerShips.includes(index)) {
             cell.classList.add('hit');
             message.textContent = "Touché !";
