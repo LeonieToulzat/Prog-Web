@@ -405,8 +405,9 @@ function computerAttack() {
 
     const cell = document.querySelector(`#player-board div[data-index="${index}"]`);
     if (playerShips.includes(index)) {
-        //cell.classList.remove('selected');
         cell.classList.add('hit');
+        cell.classList.remove('player-ship');
+        
         message.textContent = "L'ordinateur a touché un de vos bateaux !";
         updateScore(playerShips, "player");
     } else {
