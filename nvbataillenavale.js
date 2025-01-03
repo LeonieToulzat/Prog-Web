@@ -216,6 +216,16 @@ let currentTurn = "player";
 let end = false;
 let endgame = false;
 
+// === Bouton des règles du jeu ===
+const rulesButton = document.createElement('button');
+rulesButton.id = 'rules-button';
+rulesButton.textContent = 'Afficher les règles';
+rulesButton.addEventListener('click', () => {
+    alert(`Règles du jeu :\n\n- Placez vos bateaux sur votre grille en cliquant sur des cases adjacentes.\n- Les bateaux doivent être alignés horizontalement ou verticalement.\n- Une fois tous vos bateaux placés, commencez à attaquer la grille de l'ordinateur.\n- Le but est de couler tous les bateaux de l'adversaire avant qu'il ne coule les vôtres.\n\nAstuces :\n- Essayez de répartir vos bateaux pour les rendre difficiles à trouver.\n- Notez les positions des coups réussis pour optimiser vos attaques.\n- Préférez attaquer méthodiquement, ligne par ligne, ou selon un motif logique.`);
+});
+
+document.querySelector('.up').appendChild(rulesButton);
+
 // === Création des grilles ===
 function createGrid(board, isPlayerBoard) {
     board.innerHTML = '';
@@ -246,6 +256,27 @@ function selectCell(cell, index) {
     }
 }
 
+// === Affichage des messages ===
+function showMessage(text) {
+    const message = document.getElementById('message');
+    message.textContent = text;
+    message.parentElement.classList.add('show');
+    
+    // Supprimer l'animation après 2s pour pouvoir la rejouer
+    setTimeout(() => {
+        message.parentElement.classList.remove('show');
+    }, 2000);
+}
+
+// Chargement des sons
+const winSound = new Audio('win.mp3'); // Son de victoire
+const loseSound = new Audio('lose.mp3'); // Son de défaite
+
+// Fonction pour jouer un son
+function playSound(sound) {
+    sound.play();
+}
+
 // === Valider le placement des bateaux ===
 function confirmPlacement() {
     /*if (currentSelections.length < 2) {
@@ -258,7 +289,7 @@ function confirmPlacement() {
     }*/
 
     if (currentSelections.length !== shipLengths[placedShipsCount]) {
-        message.textContent = "Sélectionnez un bateau de longueur " + shipLengths[placedShipsCount] + " cases.";
+         showMessage("Sélectionnez un bateau de longueur " + shipLengths[placedShipsCount] + " cases.") ;
         return;
     }
 
@@ -272,15 +303,15 @@ function confirmPlacement() {
 
         placedShipsCount++;
         currentSelections = [];
-        message.textContent = `Bateau placé (${placedShipsCount}/${maxShips})`;
+        showMessage(`Bateau placé (${placedShipsCount}/${maxShips})`);
 
         if (placedShipsCount === maxShips) {
-            message.textContent = "Tous vos bateaux sont placés. L'ordinateur place ses bateaux...";
+            showMessage("Tous vos bateaux sont placés. L'ordinateur place ses bateaux...");
             placeComputerShips();
-            message.textContent = "Les deux grilles sont prêtes. À vous de jouer !";
+            showMessage("Les deux grilles sont prêtes. À vous de jouer !");
         }
     } else {
-        message.textContent = "Les cases doivent être adjacentes.";
+        showMessage("Les cases doivent être adjacentes.");
         clearSelections();
     }
 
@@ -346,7 +377,7 @@ function isValidPlacement(positions, length, allShips) {
 
 // === Gestion des attaques ===
 function handlePlayerAttack(cell, index) {
-    if (endgame===true) return;
+   /* if (endgame===true) return; */
     if (end || currentTurn !== "player") return;
 
     if (!cell.classList.contains('hit') && !cell.classList.contains('miss')) {
@@ -361,10 +392,11 @@ function handlePlayerAttack(cell, index) {
 // === Valider les attaques ===
 function confirmAttacks() {
     if (endgame===true) return;
+
     if (end || currentTurn !== "player") return;
     
     if (selectedAttacks.length > 1) {
-        message.textContent = "Vous ne pouvez attaquer qu'une case à la fois.";
+        showMessage("Vous ne pouvez attaquer qu'une case à la fois.");
         selectedAttacks = [];
         document.querySelectorAll('.selected-attack').forEach(cell => cell.classList.remove('selected-attack'));
         return;
@@ -375,10 +407,10 @@ function confirmAttacks() {
         cell.classList.add('selected-attack'); // Colorer les cases sélectionnées
         if (computerShips.includes(index)) {
             cell.classList.add('hit');
-            message.textContent = "Touché !";
+            showMessage("Touché !");
         } else {
             cell.classList.add('miss');
-            message.textContent = "Manqué.";
+            showMessage("Manqué.");
         }
     });
 
@@ -408,16 +440,16 @@ function computerAttack() {
         cell.classList.add('hit');
         cell.classList.remove('player-ship');
         
-        message.textContent = "L'ordinateur a touché un de vos bateaux !";
+        showMessage("L'ordinateur a touché un de vos bateaux !");
         updateScore(playerShips, "player");
     } else {
         cell.classList.add('miss');
-        message.textContent = "L'ordinateur a manqué.";
+        showMessage("L'ordinateur a manqué.");
     }
 
     if (!end) {
         currentTurn = "player";
-        message.textContent = "À votre tour !";
+        showMessage("À votre tour !");
     }
 }
 
@@ -452,11 +484,18 @@ function resetGame() {
 
     playerScore.textContent = "Vos cases restantes : 17";
     computerScore.textContent = "Cases adversaires restantes : 17";
-    message.textContent = "Placez vos bateaux en sélectionnant les cases et en validant.";
+
+    showMessage("Placez vos bateaux en sélectionnant les cases et en validant.");
 }
 
 function finishGame(msg) {
-    message.textContent = msg;
+    showMessage(msg);
+    if (computerShips.length === 0) {
+        playSound(winSound);
+    } 
+    else if (playerShips.length === 0) {
+        playSound(loseSound);
+    } 
     endgame = true;
 }
 
