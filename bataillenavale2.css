@@ -1,4 +1,5 @@
-/* Style pour l'interface */
+/*
+/* Style pour l'interface 
 
 body {
     font-family: Arial, sans-serif;
@@ -11,23 +12,23 @@ body {
     color: white;
 }
 
-/* Titre principal */
+/* Titre principal 
 h1 {
     margin: 0;
-    font-size: 4rem; /* Agrandit le titre */
+    font-size: 4rem; /* Agrandit le titre 
     text-align: center;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     padding: 40px 0;
 }
 
-/* Sous-titre */
+/* Sous-titre 
 h2 {
     font-size: 2rem;
     margin: 20px 0;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Conteneur de la grille */
+/* Conteneur de la grille 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -37,17 +38,17 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Espacement entre le titre et la grille */
+    gap: 10px; /* Espacement entre le titre et la grille 
 }
 
-/* Grid items */
+/* Grid items 
 .grid-item {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Bouton */
+/* Bouton 
 .button {
     padding: 15px 25px;
     font-size: 1.2rem;
@@ -61,7 +62,7 @@ h2 {
     transition: transform 0.3s, background-color 0.3s;
 }
 
-/* Animation au survol */
+/* Animation au survol 
 .button:hover {
     background-color: #2980b9;
     transform: scale(1.1);
@@ -78,12 +79,12 @@ h2 {
     margin: 0 auto;
 }
 
-/* Organisation des grilles */
+/* Organisation des grilles 
 
 .game-section {
     display: flex;
     justify-content: center;
-    gap: 40px; /* Espacement entre les grilles */
+    gap: 40px; /* Espacement entre les grilles 
     width: 100%;
     max-width: 1200px;
 }
@@ -111,15 +112,15 @@ h2 {
     font-weight: bold;
 }
 
-/* Coup touché */
+/* Coup touché 
 .grid div.hit {
-background-color: red;  /* Rouge pour les coups réussis */
+background-color: red;  /* Rouge pour les coups réussis 
 animation: hitAnimation 0.5s ease;
 }
 
-/* Coup manqué */
+/* Coup manqué 
 .grid div.miss {
-background-color: blue; /* Bleu pour les coups manqués */
+background-color: blue; /* Bleu pour les coups manqués 
 animation: hitAnimation 0.5s ease;
 }
 
@@ -146,14 +147,173 @@ border-radius: 5px;
 }
 
 .grid div.selected {
-background-color: #87cefa; /* Bleu pour les sélections temporaires */
+background-color: #87cefa; /* Bleu pour les sélections temporaires 
 }
 
 .grid div.player-ship {
-background-color: #2ecc71; /* Vert pour les bateaux confirmés */
+background-color: #2ecc71; /* Vert pour les bateaux confirmés 
 }
 
 .grid div.selected-attack {
 background-color: rgba(255,0,0,0.5);
 cursor:pointer;
 }
+*/
+
+/* Style général */
+body {
+    font-family: 'Poppins', Arial, sans-serif; /* Police moderne */
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('world_of_warships_cover-750x500.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #f4f4f4;
+}
+
+/* Titre principal */
+h1 {
+    margin: 0;
+    font-size: 3.5rem;
+    text-align: center;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+    padding: 40px 0;
+}
+
+/* Sous-titre */
+h2 {
+    font-size: 2rem;
+    margin: 20px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Section des grilles */
+.game-section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Grille */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.grid div {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+/* Effet au survol */
+.grid div:hover {
+    background-color: #3498db;
+    transform: scale(1.1);
+}
+
+/* Coup touché */
+.grid div.hit {
+    background-color: #e74c3c;
+    animation: hitAnimation 0.5s ease;
+}
+
+/* Coup manqué */
+.grid div.miss {
+    background-color: #3498db;
+    animation: hitAnimation 0.5s ease;
+}
+
+/* Animation pour les coups */
+@keyframes hitAnimation {
+    from { transform: scale(1.2); }
+    to { transform: scale(1); }
+}
+
+/* Sélection temporaire */
+.grid div.selected {
+    background-color: rgba(52, 152, 219, 0.5);
+}
+
+/* Bateaux confirmés */
+.grid div.player-ship {
+    background-color: #2ecc71;
+}
+
+.grid div.selected-attack {
+    background-color: rgba(255,0,0,0.5);
+    cursor:pointer;
+}
+
+/* Boutons */
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #2980b9, #1c5986);
+    transform: scale(1.1);
+}
+
+.button:active {
+    transform: scale(0.95);
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* Contrôles */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.controls label {
+    font-weight: bold;
+}
+
+.controls select {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    outline: none;
+    font-size: 1rem;
+}
+
+
+
+
