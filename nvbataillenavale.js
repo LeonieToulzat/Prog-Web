@@ -243,19 +243,6 @@ function createGrid(board, isPlayerBoard) {
     }
 }
 
-// === Sélection des cases pour les bateaux ===
-function selectCell(cell, index) {
-    if (placedShipsCount >= maxShips || end || currentTurn !== "player") return;
-
-    if (!currentSelections.includes(index) && !playerShips.includes(index)) {
-        currentSelections.push(index);
-        cell.classList.add('selected'); // Colorer immédiatement la case
-    } else if (currentSelections.includes(index)) {
-        currentSelections = currentSelections.filter(pos => pos !== index);
-        cell.classList.remove('selected');
-    }
-}
-
 // === Affichage des messages ===
 function showMessage(text) {
     const message = document.getElementById('message');
@@ -268,78 +255,13 @@ function showMessage(text) {
     }, 2000);
 }
 
-// Chargement des sons
+// === Chargement des sons ===
 const winSound = new Audio('winning.mp3'); // Son de victoire
 const loseSound = new Audio('lose-sound.mp3'); // Son de défaite
 
-// Fonction pour jouer un son
+// === Fonction pour jouer un son ===
 function playSound(sound) {
     sound.play();
-}
-
-// === Valider le placement des bateaux ===
-function confirmPlacement() {
-    /*if (currentSelections.length < 2) {
-        message.textContent = "Veuillez sélectionner au moins 2 cases adjacentes.";
-        return;
-    }
-    if (currentSelections.length > 5) {
-        message.textContent = "Bateau trop long !";
-        return;
-    }*/
-
-    if (currentSelections.length !== shipLengths[placedShipsCount]) {
-         showMessage("Sélectionnez un bateau de longueur " + shipLengths[placedShipsCount] + " cases.") ;
-        return;
-    }
-
-
-
-    if (isValidSelection(currentSelections)) {
-        currentSelections.forEach(pos => {
-            playerShips.push(pos);
-            document.querySelector(`#player-board div[data-index="${pos}"]`).classList.add('player-ship');
-        });
-
-        placedShipsCount++;
-        currentSelections = [];
-        showMessage(`Bateau placé (${placedShipsCount}/${maxShips})`);
-
-        if (placedShipsCount === maxShips) {
-            showMessage("Tous vos bateaux sont placés. L'ordinateur place ses bateaux...");
-            placeComputerShips();
-            showMessage("Les deux grilles sont prêtes. À vous de jouer !");
-        }
-    } else {
-        showMessage("Les cases doivent être adjacentes.");
-        clearSelections();
-    }
-
-}
-
-function clearSelections() {
-    currentSelections.forEach(pos => {
-        document.querySelector(`#player-board div[data-index="${pos}"]`).classList.remove('selected');
-    });
-    currentSelections = [];
-}
-
-// === Placement des bateaux de l'adversaire ===
-function placeComputerShips() {
-    computerShips = [];
-    for (let length of shipLengths) {
-        let validPlacement = false;
-        while (!validPlacement) {
-            const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
-            const startIndex = Math.floor(Math.random() * gridSize * gridSize);
-            const positions = calculateShipPositions(startIndex, length, direction);
-
-            if (isValidPlacement(positions, length, computerShips)) {
-                computerShips.push(...positions);
-                validPlacement = true;
-            }
-        }
-    }
 }
 
 // === Calculer les positions d'un bateau ===
@@ -375,7 +297,88 @@ function isValidPlacement(positions, length, allShips) {
     );
 }
 
-// === Gestion des attaques ===
+// Placement des bateaux de l'utilisateur //
+
+// === Sélection des cases pour les bateaux ===
+function selectCell(cell, index) {
+    if (placedShipsCount >= maxShips || end || currentTurn !== "player") return;
+
+    if (!currentSelections.includes(index) && !playerShips.includes(index)) {
+        currentSelections.push(index);
+        cell.classList.add('selected'); // Colorer immédiatement la case
+    } else if (currentSelections.includes(index)) {
+        currentSelections = currentSelections.filter(pos => pos !== index);
+        cell.classList.remove('selected');
+    }
+}
+
+// === Valider le placement des bateaux ===
+function confirmPlacement() {
+    /*if (currentSelections.length < 2) {
+        message.textContent = "Veuillez sélectionner au moins 2 cases adjacentes.";
+        return;
+    }
+    if (currentSelections.length > 5) {
+        message.textContent = "Bateau trop long !";
+        return;
+    }*/
+
+    if (currentSelections.length !== shipLengths[placedShipsCount]) {
+         showMessage("Sélectionnez un bateau de longueur " + shipLengths[placedShipsCount] + " cases.") ;
+        return;
+    }
+
+    if (isValidSelection(currentSelections)) {
+        currentSelections.forEach(pos => {
+            playerShips.push(pos);
+            document.querySelector(`#player-board div[data-index="${pos}"]`).classList.add('player-ship');
+        });
+
+        placedShipsCount++;
+        currentSelections = [];
+        showMessage(`Bateau placé (${placedShipsCount}/${maxShips})`);
+
+        if (placedShipsCount === maxShips) {
+            showMessage("Tous vos bateaux sont placés. L'ordinateur place ses bateaux...");
+            placeComputerShips();
+            showMessage("Les deux grilles sont prêtes. À vous de jouer !");
+        }
+    } else {
+        showMessage("Les cases doivent être adjacentes.");
+        clearSelections();
+    }
+
+}
+
+function clearSelections() {
+    currentSelections.forEach(pos => {
+        document.querySelector(`#player-board div[data-index="${pos}"]`).classList.remove('selected');
+    });
+    currentSelections = [];
+}
+
+// Placement des bateaux de l'adversaire //
+
+function placeComputerShips() {
+    computerShips = [];
+    for (let length of shipLengths) {
+        let validPlacement = false;
+        while (!validPlacement) {
+            const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical';
+            const startIndex = Math.floor(Math.random() * gridSize * gridSize);
+            const positions = calculateShipPositions(startIndex, length, direction);
+
+            if (isValidPlacement(positions, length, computerShips)) {
+                computerShips.push(...positions);
+                validPlacement = true;
+            }
+        }
+    }
+}
+
+// Gestion des attaques //
+
+// === Attaque du joueur ===
 function handlePlayerAttack(cell, index) {
    /* if (endgame===true) return; */
     if (end || currentTurn !== "player") return;
@@ -389,7 +392,6 @@ function handlePlayerAttack(cell, index) {
     }
 }
 
-// === Valider les attaques ===
 function confirmAttacks() {
     if (endgame===true) return;
 
@@ -498,6 +500,7 @@ function resetGame() {
     showMessage("Placez vos bateaux en sélectionnant les cases et en validant.");
 }
 
+// === Fin du jeu ===
 function finishGame(msg) {
     showMessage(msg);
     if (computerShips.length === 0) {
