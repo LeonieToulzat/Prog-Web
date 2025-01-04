@@ -187,6 +187,7 @@ h2 {
     font-size: 2rem;
     margin: 20px 0;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    text-align: center;
 }
 
 /* Conteneur principal */
@@ -280,6 +281,8 @@ h2 {
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    display: block;
+    margin: 0 auto;
 }
 
 .button:hover {
@@ -298,6 +301,8 @@ h2 {
     justify-content: center;
     gap: 20px;
     margin: 20px 0;
+
+
 }
 
 .controls label {
@@ -305,13 +310,15 @@ h2 {
 }
 
 .controls select {
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
     color: white;
     outline: none;
     font-size: 1rem;
+    cursor : pointer;
+
 }
 
 

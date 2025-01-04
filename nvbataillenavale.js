@@ -406,9 +406,13 @@ function confirmAttacks() {
         const cell = document.querySelector(`#computer-board div[data-index="${index}"]`);
         cell.classList.add('selected-attack'); // Colorer les cases sélectionnées
         if (computerShips.includes(index)) {
+            let audio1 = new Audio("Boum.mp3");
+            audio1.play();
             cell.classList.add('hit');
             showMessage("Touché !");
         } else {
+            let audio2 = new Audio("Plouf.mp3");
+            audio2.play();
             cell.classList.add('miss');
             showMessage("Manqué.");
         }
@@ -440,11 +444,15 @@ function computerAttack() {
         //cell.classList.add('hit');
         cell.classList.remove('player-ship');
         cell.classList.remove('selected');
+        let audio1 = new Audio("Boum.mp3");
+        audio1.play();
         cell.classList.add('hit');
         
         showMessage("L'ordinateur a touché un de vos bateaux !");
         updateScore(playerShips, "player");
     } else {
+        let audio2 = new Audio("Plouf.mp3");
+        audio2.play();
         cell.classList.add('miss');
         showMessage("L'ordinateur a manqué.");
     }
