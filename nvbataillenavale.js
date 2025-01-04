@@ -224,7 +224,7 @@ rulesButton.addEventListener('click', () => {
     alert(`Règles du jeu :\n\n- Chaque flotte est composée de 1 bateau long de 5 cases, 1 bateau long de 4 cases, 2 bateaux longs de 3 cases, et 1 bateau long de 2 cases. \n- Placez vos bateaux sur votre grille en cliquant sur le bon nombre de cases adjacentes, puis en validant le placement.\n- Les cases doivent être alignées horizontalement ou verticalement.\n- Une fois tous vos bateaux placés, commencez à attaquer la grille de l'ordinateur en sélectionnant une case sur la grille puis en validant l'attaque avec le bouton.\n -Un coup manqué (dans l'eau) fait une case bleue, un coup réussi (bateau touché) fait une case rouge.\n- Le but est de couler tous les bateaux de l'adversaire avant qu'il ne coule les vôtres.\n\nAstuces :\n- Essayez de répartir vos bateaux pour les rendre difficiles à trouver.\n- Notez les positions des coups réussis pour optimiser vos attaques.\n- Préférez attaquer méthodiquement, ligne par ligne, ou selon un motif logique.`);
 });
 
-document.querySelector('.controls').appendChild(rulesButton);
+document.querySelector('.up').appendChild(rulesButton);
 
 // === Création des grilles ===
 function createGrid(board, isPlayerBoard) {
