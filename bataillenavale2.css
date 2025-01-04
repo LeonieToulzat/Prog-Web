@@ -119,7 +119,7 @@ animation: hitAnimation 0.5s ease;
 
 /* Coup manqué */
 .grid div.miss {
-background-color: blue; /* Bleu pour les coups réussis */
+background-color: blue; /* Bleu pour les coups manqués */
 animation: hitAnimation 0.5s ease;
 }
 
