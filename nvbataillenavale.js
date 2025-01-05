@@ -255,10 +255,6 @@ function showMessage(text) {
     }, 2000);
 }
 
-// === Chargement des sons ===
-const winSound = new Audio('winning.mp3'); // Son de victoire
-const loseSound = new Audio('lose-sound.mp3'); // Son de défaite
-
 // === Fonction pour jouer un son ===
 function playSound(sound) {
     sound.play();
@@ -409,12 +405,12 @@ function confirmAttacks() {
         cell.classList.add('selected-attack'); // Colorer les cases sélectionnées
         if (computerShips.includes(index)) {
             let audio1 = new Audio("Boum.mp3");
-            audio1.play();
+            playSound(audio1);
             cell.classList.add('hit');
             showMessage("Touché !");
         } else {
             let audio2 = new Audio("Plouf.mp3");
-            audio2.play();
+            playSound(audio2);
             cell.classList.add('miss');
             showMessage("Manqué.");
         }
@@ -447,14 +443,14 @@ function computerAttack() {
         cell.classList.remove('player-ship');
         cell.classList.remove('selected');
         let audio1 = new Audio("Boum.mp3");
-        audio1.play();
+        playSound(audio1);
         cell.classList.add('hit');
         
         showMessage("L'ordinateur a touché un de vos bateaux !");
         updateScore(playerShips, "player");
     } else {
         let audio2 = new Audio("Plouf.mp3");
-        audio2.play();
+        playSound(audio2);
         cell.classList.add('miss');
         showMessage("L'ordinateur a manqué.");
     }
@@ -472,8 +468,16 @@ function updateScore(ships, playerType) {
 
     if (playerType === "player") {
         playerScore.textContent = `Vos cases restantes : ${remaining}`;
+        if (remaining === 0){
+            let loseSound = new Audio('lose-sound.mp3'); 
+            playSound(loseSound);
+        } 
     } else {
         computerScore.textContent = `Cases adversaires restantes : ${remaining}`;
+        if (remaining === 0){
+            let winSound = new Audio('winning.mp3'); 
+            playSound(winSound);
+        } 
     }
 
     if (remaining === 0) {
@@ -503,12 +507,6 @@ function resetGame() {
 // === Fin du jeu ===
 function finishGame(msg) {
     showMessage(msg);
-    if (computerShips.length === 0) {
-        playSound(winSound);
-    } 
-    else if (playerShips.length === 0) {
-        playSound(loseSound);
-    } 
     endgame = true;
 }
 
@@ -517,5 +515,4 @@ confirmButton.addEventListener('click', confirmAttacks);
 confirmPlacementButton.addEventListener('click', confirmPlacement);
 
 // === Initialisation ===
-resetGame();
-
+resetGame()
