@@ -233,15 +233,6 @@ cursor:pointer;
 
 
 
-
-
-
-
-
-
-
-
-
 /* Style général */
 body {
     font-family: 'Poppins', Arial, sans-serif; /* Police moderne */
@@ -256,13 +247,23 @@ body {
 }
 
 /* Titre principal */
-h1 {
-    margin: 0;
-    font-size: 3.5rem;
+/* Style du header */
+header {
     text-align: center;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-    padding: 40px 0;
+    padding: 20px;
+    background-color: #003366; /* Bleu marine */
+    color: white;
 }
+
+/* Style du titre */
+h1 {
+    font-size: 3em; /* Agrandir le titre */
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Mettre en majuscules */
+    letter-spacing: 2px; /* Espacement des lettres */
+}
+
+/* Style du sous-titre */
 
 /* Sous-titre */
 h2 {
@@ -271,6 +272,25 @@ h2 {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
     text-align: center; 
     /*font-family: 'Lucida Console', Monaco, monospace;*/
+}
+
+.subtitle {
+    font-size: 1.5em; /* Texte plus grand */
+    color: #ffcc00; /* Jaune doré pour ressortir */
+    max-width: 80%; /* Limite la largeur du texte */
+    margin: 0 auto; /* Centre le texte horizontalement */
+    font-style: italic; /* Style immersif */
+    font-weight: bold;
+    line-height: 1.4; /* Espacement des lignes */
+}
+
+/* Centrer le contenu principal */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Prend presque toute la hauteur de l'écran */
 }
 
 /* Conteneur principal */
@@ -414,7 +434,6 @@ h2 {
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
-
 
 
 
