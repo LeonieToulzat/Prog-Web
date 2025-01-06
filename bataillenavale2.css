@@ -1,5 +1,4 @@
 /* Style pour l'interface 
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -109,6 +108,64 @@ h2 {
     border: 1px solid #ccc;
     cursor: pointer;
 }
+/* Coup touché 
+.grid div.hit {
+background-color: red;  /* Rouge pour les coups réussis 
+animation: hitAnimation 0.5s ease;
+}
+
+/* Coup manqué 
+.grid div.miss {
+background-color: blue; /* Bleu pour les coups réussis 
+animation: hitAnimation 0.5s ease;
+}
+
+@keyframes hitAnimation {
+from { transform: scale(1.2); }
+to { transform: scale(1); }
+}
+
+.controls {
+margin: 10px 0;
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+
+.controls label {
+font-weight: bold;
+}
+
+.controls select {
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+.grid div.selected {
+background-color: #87cefa; /* Bleu pour les sélections temporaires 
+}
+
+.grid div.player-ship {
+background-color: #2ecc71; /* Vert pour les bateaux confirmés 
+}
+
+.grid div.selected-attack {
+background-color: rgba(255,0,0,0.5);
+cursor:pointer;
+}
+
+/* Coup touché 
+.grid div.hit {
+    background-color: red;  /* Rouge pour les coups réussis 
+    animation: hitAnimation 0.5s ease;
+    }
+    
+/* Coup manqué 
+.grid div.miss {
+    background-color: blue; /* Bleu pour les coups réussis 
+    animation: hitAnimation 0.5s ease;
+}
 */
 
 /* Message de jeu (affiché à gauche) */
@@ -170,68 +227,6 @@ h2 {
     transition: opacity 0.3s ease-in-out;
     width: 300px; /* Réduit la largeur */
 }
-
-/* Coup touché 
-.grid div.hit {
-background-color: red;  /* Rouge pour les coups réussis 
-animation: hitAnimation 0.5s ease;
-}
-
-/* Coup manqué 
-.grid div.miss {
-background-color: blue; /* Bleu pour les coups réussis 
-animation: hitAnimation 0.5s ease;
-}
-
-@keyframes hitAnimation {
-from { transform: scale(1.2); }
-to { transform: scale(1); }
-}
-
-.controls {
-margin: 10px 0;
-display: flex;
-justify-content: center;
-gap: 20px;
-}
-
-.controls label {
-font-weight: bold;
-}
-
-.controls select {
-padding: 5px;
-border: 1px solid #ccc;
-border-radius: 5px;
-}
-
-.grid div.selected {
-background-color: #87cefa; /* Bleu pour les sélections temporaires 
-}
-
-.grid div.player-ship {
-background-color: #2ecc71; /* Vert pour les bateaux confirmés 
-}
-
-.grid div.selected-attack {
-background-color: rgba(255,0,0,0.5);
-cursor:pointer;
-}
-
-/* Coup touché 
-.grid div.hit {
-    background-color: red;  /* Rouge pour les coups réussis 
-    animation: hitAnimation 0.5s ease;
-    }
-    
-/* Coup manqué 
-.grid div.miss {
-    background-color: blue; /* Bleu pour les coups réussis 
-    animation: hitAnimation 0.5s ease;
-}
-*/
-
-
 
 /* Style général */
 body {
@@ -433,8 +428,3 @@ main {
     outline: none;
     font-size: 1rem;
 }
-
-
-
-
-
