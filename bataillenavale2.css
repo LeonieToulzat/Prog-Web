@@ -144,7 +144,6 @@ h2 {
     }
 }
 
-
 #overlay {
     position: fixed;
     top: 0;
@@ -247,7 +246,6 @@ body {
     color: #f4f4f4;
 }
 
-/* Titre principal */
 /* Style du header */
 header {
     text-align: center;
@@ -398,6 +396,22 @@ main {
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+.littlebutton {
+    display: block;
+    margin: 0 auto; 
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: white;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
 /* Contrôles */
 .controls {
     display: flex;
@@ -420,21 +434,7 @@ main {
     font-size: 1rem;
 }
 
-.littlebutton {
-    display: block;
-    margin: 0 auto; 
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    color: white;
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
+
 
 
 
