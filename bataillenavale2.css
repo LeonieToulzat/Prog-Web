@@ -110,7 +110,8 @@ h2 {
     cursor: pointer;
 }
 */
-/* Message de jeu (affiché à droite) */
+
+/* Message de jeu (affiché à gauche) */
 #game-message {
     position: absolute;
     top: 50%;
