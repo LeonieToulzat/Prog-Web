@@ -188,7 +188,7 @@ function handlePlayerAttack(cell, index) {
 
     if (!cell.classList.contains('hit') && !cell.classList.contains('miss')) {
         selectedAttacks.push(index);
-        cell.classList.add('selected-attack'); // Colorer immédiatement
+        cell.classList.add('selected-attack'); // Colorer les cases sélectionnées
     } else {
         selectedAttacks = selectedAttacks.filter(pos => pos !== index);
         cell.classList.remove('selected-attack');
