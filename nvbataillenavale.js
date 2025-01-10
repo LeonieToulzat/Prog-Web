@@ -33,23 +33,6 @@ function openrules() {
             : "1";
 }
 
-// === Création des grilles ===
-function createGrid(board, isPlayerBoard) {
-    board.innerHTML = '';
-    for (let i = 0; i < gridSize * gridSize; i++) {
-        const cell = document.createElement('div');
-        cell.dataset.index = i;
-
-        if (isPlayerBoard) {
-            cell.addEventListener('click', () => selectCell(cell, i));
-        } else {
-            cell.addEventListener('click', () => handlePlayerAttack(cell, i));
-        }
-
-        board.appendChild(cell);
-    }
-}
-
 // === Affichage des messages ===
 function showMessage(text) {
     const message = document.getElementById('message');
@@ -65,6 +48,23 @@ function showMessage(text) {
 // === Fonction pour jouer un son ===
 function playSound(sound) {
     sound.play();
+}
+
+// === Création des grilles ===
+function createGrid(board, isPlayerBoard) {
+    board.innerHTML = '';
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        const cell = document.createElement('div');
+        cell.dataset.index = i;
+
+        if (isPlayerBoard) {
+            cell.addEventListener('click', () => selectCell(cell, i));
+        } else {
+            cell.addEventListener('click', () => handlePlayerAttack(cell, i));
+        }
+
+        board.appendChild(cell);
+    }
 }
 
 // === Calculer les positions d'un bateau ===
