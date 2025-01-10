@@ -161,6 +161,16 @@ main {
     transform: scale(1.1);
 }
 
+/* Sélection temporaire */
+.grid div.selected {
+    background-color: rgba(52, 152, 219, 0.5);
+}
+
+/* Bateaux confirmés */
+.grid div.player-ship {
+    background-color: #2ecc71;
+}
+
 /* Coup touché */
 .grid div.hit {
     background-color: #e74c3c;
@@ -178,17 +188,6 @@ main {
     from { transform: scale(1.2); }
     to { transform: scale(1); }
 }
-
-/* Sélection temporaire */
-.grid div.selected {
-    background-color: rgba(52, 152, 219, 0.5);
-}
-
-/* Bateaux confirmés */
-.grid div.player-ship {
-    background-color: #2ecc71;
-}
-
 .grid div.selected-attack {
     background-color: rgba(255,0,0,0.5);
     cursor:pointer;
